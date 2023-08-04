@@ -1,4 +1,5 @@
 import 'package:e_commerce_animate/controller/productController.dart';
+import 'package:e_commerce_animate/modals/product_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,12 +24,34 @@ class HomePage extends StatelessWidget {
                       crossAxisSpacing: 4,
                       mainAxisSpacing: 4,
                     ),
+                    itemCount: provider.allProducts.length,
                     itemBuilder: (context, index) {
-                      ProductController data =
-                          provider.allProducts[index] as ProductController;
+                      ProductModal data = provider.allProducts[index];
                       return Card(
                         child: GestureDetector(
-                          child: Container(),
+                          onTap: () {
+                            Navigator.of(context).pushNamed('detail_page', arguments: data);
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Hero(
+                                tag: data.id,
+                                child: SizedBox(
+                                  height: 120,
+                                  width: double.infinity,
+                                  child: Image.network(
+                                    data.thumbnail,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                data.title,
+                                style: const TextStyle(fontSize: 16,),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },

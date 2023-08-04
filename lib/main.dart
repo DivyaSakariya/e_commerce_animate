@@ -1,3 +1,4 @@
+import 'package:e_commerce_animate/views/screens/detail_page.dart';
 import 'package:e_commerce_animate/views/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (context) => const HomePage(),
+        'detail_page': (context) => const DetailPage(),
       },
     );
   }
